@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>修改员工数据</span>
+<form th:action="@{/emp/updateEmp}" th:object="${emp}"
+      method="post" enctype="multipart/form-data">
+    <input th:type="hidden" th:field="${emp.eid}">
+    <table align="center">
+        <tr>
+            <td>姓名：</td>
+            <td>
+                <input th:type="text" th:field="${emp.ename}">
+            </td>
+        </tr>
+        <tr>
+            <td>薪资：</td>
+            <td>
+                <input th:type="text" th:field="${emp.salary}">
+            </td>
+        </tr>
+        <tr>
+            <td>职位：</td>
+            <td>
+                <input th:type="text" th:field="${emp.job}">
+            </td>
+        </tr>
+        <tr>
+            <td>生日：</td>
+            <td>
+                <input th:type="date" th:field="${emp.birthday}">
+            </td>
+        </tr>
+        <tr>
+            <td>照片：</td>
+            <td>
+                <img th:src="@{${emp.photo}}" width="80" height="80">
+                <input th:type="file" name="file">
+            </td>
+        </tr>
+        <tr>
+            <td>所在部门：</td>
+            <td>
+                <select name="did" required>
+                    <option th:each="dept:${depts}" th:text="${dept.dname}"
+                            th:value="${dept.did}"></option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input th:type="submit" value="提交">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
